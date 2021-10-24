@@ -4,7 +4,7 @@ import json
 
 x_session_token = ""        #B服玩家不需要填写此项
 uid = ""
-raw_cookies=""
+raw_cookies= ""
 
 address="https://ak.hypergryph.com/activity/kazimierz-major/pullBox"
 cookies = raw_cookies.split("; ")
@@ -40,7 +40,7 @@ def run():
         r = requests.post(address, data=data, cookies=cookie, headers=headers)
         time.sleep(2)
         result = json.loads(r.text)['msg']
-        print(result)
+        print("第" + str(i+1) + "个补给包： " + result)
         
 
 
