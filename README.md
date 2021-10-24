@@ -7,7 +7,7 @@
 2、获取token  
 如果是B服请直接登录，如果已登录请跳过此步。  
 如果是官服，请暂时不要登录，如已经登陆，请先退出登录。  
-按F12打开开发者工具——>找到Network选项卡——>登录账号——>找到**token_by_phone_password**——>点击**Response**——>复制```token:```中的内容到脚本的```token```中。  
+按F12打开开发者工具——>找到Network选项卡——>登录账号——>找到**token_by_phone_password**——>点击**Response**——>复制```token:```中的内容到脚本的```x-session_token```中。  
 3、获取uid  
 可以直接在网页中账号信息中看到你自己的uid，并填入脚本中的```uid```。  
 3、获取cookie  
