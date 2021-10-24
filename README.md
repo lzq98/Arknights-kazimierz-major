@@ -12,5 +12,6 @@
 可以直接在网页中账号信息中看到你自己的uid，并填入脚本中的```uid```。
 3、获取cookie
 在开发者工具中的Console里输入```document.cookie```并复制到脚本的```raw_cookies```中，不要复制单引号。
+![image](./images/gettoke.png)
 
 运行后，将会在每天4：00自动签到。
