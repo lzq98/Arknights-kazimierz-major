@@ -2,19 +2,18 @@ import requests
 import time
 import json
 
-x_session_token = ""        #B服玩家不需要填写此项
+x_session_token = ""  # B服玩家不需要填写此项
 uid = ""
-raw_cookies= ""
+raw_cookies = ""
 
-address="https://ak.hypergryph.com/activity/kazimierz-major/pullBox"
+address = "https://ak.hypergryph.com/activity/kazimierz-major/pullBox"
 cookies = raw_cookies.split("; ")
 cookie = {}
 for c in cookies:
     temp = c.split("=")
     cookie[temp[0]] = temp[1]
-#print(cookie)
 
-headers={
+headers = {
     'accept': 'application/json',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh-HK;q=0.9,zh;q=0.8,en-AU;q=0.7,en;q=0.6,ja;q=0.5',
@@ -34,18 +33,24 @@ headers={
     'x-session-token': x_session_token
 }
 
+
 def run():
     for i in range(6):
         data = '{"box": ' + str(i) + '}'
         r = requests.post(address, data=data, cookies=cookie, headers=headers)
         time.sleep(2)
-        result = json.loads(r.text)['msg']
-        print("第" + str(i+1) + "个补给包： " + result)
-        
+        result = json.loads(r.text)
+        if result['code'] == 0:
+            print("签到成功，领取第" + str(result['data']['box']+1) + "个补给包")
+            print("龙门币：" + str(result['data']['content']['LMD']))
+            print("合成玉：" + str(result['data']['content']['ORD']))
+            break
+        else:
+            print("领取第" + str(i+1) + "个补给包失败：" + result['msg'])
 
 
 if __name__ == "__main__":
-    run() #第一次运行
+    run()  # 第一次运行
     while True:
         now_localtime = time.strftime("%H:%M", time.localtime())
         if now_localtime == "04:00":
